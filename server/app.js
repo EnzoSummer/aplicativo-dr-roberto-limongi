@@ -3,7 +3,10 @@ import { resolve } from 'path';
 
 dotenv.config();
 
+import './src/database';
+
 import express from 'express';
+import adminRoutes from './src/routes/adminRoutes';
 
 class App {
   constructor() {
@@ -19,6 +22,7 @@ class App {
   }
 
   routes() {
+    this.app.use('/admins/', adminRoutes);
   }
 }
 

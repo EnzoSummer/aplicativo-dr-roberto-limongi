@@ -1,16 +1,16 @@
 import { Router } from 'express';
-import userController from '../controllers/UserController';
-import loginRequired from '../middlewares/loginRequired';
+import adminController from '../controllers/AdminController';
+// import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();
 
-router.get('/', userController.index);
-router.get('/:id', userController.show);
+router.get('/', adminController.index);
+router.get('/:id', adminController.show);
 
-router.post('/', loginRequired, userController.store);
+router.post('/', adminController.store);
 
 // O usuario logado pode se editar e se excluir
-router.put('/', loginRequired, userController.update);
-router.delete('/', loginRequired, userController.delete);
+router.put('/:id', adminController.update);
+router.delete('/:id', adminController.delete);
 
 export default router;

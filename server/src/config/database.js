@@ -8,14 +8,15 @@ module.exports = {
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE,
   define: {
+    freezeTableName: true,
     timestamps: true,
     underscored: true,
     underscoredAll: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    createdAt: 'dt_criacao',
+    updatedAt: 'dt_atualizacao',
   },
   dialectOptions: {
-    timezone: 'America/Sao_Paulo',
+    timezone: '-03:00',
   },
-  timezone: 'America/Sao_Paulo',
+  timezone: '-03:00',
 };
