@@ -19,7 +19,7 @@ module.exports = {
       ic_status: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: 1,
+        defaultValue: true,
       },
       cd_password_hash: {
         type: Sequelize.STRING,

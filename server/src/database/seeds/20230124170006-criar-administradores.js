@@ -8,6 +8,13 @@ module.exports = {
     dt_criacao: new Date(),
     dt_atualizacao: new Date(),
 
+  }, {
+    nm_administrador: 'Gustavo',
+    cd_email: 'contato@summercomunicacao.com.br',
+    cd_password_hash: await bcryptjs.hash('123456', 8),
+    dt_criacao: new Date(),
+    dt_atualizacao: new Date(),
+
   }], {}),
 
   down: () => {},

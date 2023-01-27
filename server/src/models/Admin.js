@@ -34,6 +34,10 @@ export default class Admin extends Model {
           },
         },
       },
+      ic_status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
       cd_password_hash: {
         type: Sequelize.STRING,
         defaultValue: '',

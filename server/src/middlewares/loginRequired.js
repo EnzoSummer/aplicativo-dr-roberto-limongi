@@ -11,15 +11,14 @@ export default async (req, res, next) => {
   }
 
   const [, token] = authorization.split(' ');
-  console.log(token);
+
   try {
     const dados = jwt.verify(token, process.env.TOKEN_SECRET);
-    const { id, email } = dados;
-
+    const { cd_administrador, cd_email } = dados;
     const administrador = await Admin.findOne({
       where: {
-        id,
-        email,
+        cd_administrador,
+        cd_email,
       },
     });
 
@@ -29,8 +28,8 @@ export default async (req, res, next) => {
       });
     }
 
-    req.administradorId = id;
-    req.administradorEmail = email;
+    req.administradorId = cd_administrador;
+    req.administradorEmail = cd_email;
     return next();
   } catch (e) {
     return res.status(401).json({
