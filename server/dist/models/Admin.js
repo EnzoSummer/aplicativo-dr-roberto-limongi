@@ -1,11 +1,11 @@
-import Sequelize, { Model } from 'sequelize';
-import bcryptjs from 'bcryptjs';
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
+var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
 
-export default class Admin extends Model {
+ class Admin extends _sequelize.Model {
   static init(sequelize) {
     super.init({
       cd_administrador: {
-        type: Sequelize.INTEGER,
+        type: _sequelize2.default.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         unique: {
@@ -13,7 +13,7 @@ export default class Admin extends Model {
         },
       },
       nm_administrador: {
-        type: Sequelize.STRING,
+        type: _sequelize2.default.STRING,
         defaultValue: '',
         validate: {
           len: {
@@ -23,7 +23,7 @@ export default class Admin extends Model {
         },
       },
       cd_email: {
-        type: Sequelize.STRING,
+        type: _sequelize2.default.STRING,
         defaultValue: '',
         unique: {
           msg: 'Email já existe',
@@ -35,23 +35,23 @@ export default class Admin extends Model {
         },
       },
       ic_status: {
-        type: Sequelize.BOOLEAN,
+        type: _sequelize2.default.BOOLEAN,
         defaultValue: true,
       },
       cd_password_hash: {
-        type: Sequelize.STRING,
+        type: _sequelize2.default.STRING,
         defaultValue: '',
       },
       cd_password_reset_token: {
-        type: Sequelize.STRING,
+        type: _sequelize2.default.STRING,
         defaultValue: '',
       },
       cd_password_reset_expires: {
-        type: Sequelize.DATE,
+        type: _sequelize2.default.DATE,
         defaultValue: '',
       },
       password: {
-        type: Sequelize.VIRTUAL,
+        type: _sequelize2.default.VIRTUAL,
         defaultValue: '',
         validate: {
           len: {
@@ -68,13 +68,13 @@ export default class Admin extends Model {
 
     this.addHook('beforeSave', async (user) => {
       if (user.password) {
-        user.cd_password_hash = await bcryptjs.hash(user.password, 8);
+        user.cd_password_hash = await _bcryptjs2.default.hash(user.password, 8);
       }
     });
     return this;
   }
 
   passwordIsValid(password) {
-    return bcryptjs.compare(password, this.cd_password_hash);
+    return _bcryptjs2.default.compare(password, this.cd_password_hash);
   }
-}
+} exports.default = Admin;

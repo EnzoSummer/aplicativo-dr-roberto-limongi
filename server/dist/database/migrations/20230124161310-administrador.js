@@ -1,4 +1,4 @@
-module.exports = {
+"use strict";module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.createTable('tb_administrador', {
       cd_administrador: {
