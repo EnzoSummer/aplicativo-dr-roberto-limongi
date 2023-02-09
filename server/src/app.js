@@ -3,11 +3,12 @@ import { resolve } from 'path';
 
 dotenv.config();
 
-import './src/database';
+import './database';
 
 import express from 'express';
-import adminRoutes from './src/routes/adminRoutes';
-import tokenRoutes from './src/routes/tokenRoutes';
+import adminRoutes from './routes/adminRoutes';
+import tokenRoutes from './routes/tokenRoutes';
+import resetPasswordRoutes from './routes/resetPasswordRoutes';
 
 class App {
   constructor() {
@@ -25,6 +26,7 @@ class App {
   routes() {
     this.app.use('/administrador/', adminRoutes);
     this.app.use('/auth/', tokenRoutes);
+    this.app.use('/forgot_password/', resetPasswordRoutes);
   }
 }
 
